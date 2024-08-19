@@ -32,8 +32,8 @@ module apb_slave(
 
   always @(posedge pclk) begin
     if(~prst_n) begin
-			for(int i=0; i<2**ADDR_WIDTH; i++)
-				mem[i] <= 0;
+      for(int i=0; i<2**ADDR_WIDTH; i++)
+        mem[i] <= 0;
       pready <= 1'b0;
       prdata <= 32'b0;
     end
