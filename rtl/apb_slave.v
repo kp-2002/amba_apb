@@ -1,13 +1,13 @@
 module apb_slave(
-  input  pclk,
-  input  prst_n,
-  input  psel,
-  input  pwrite,
-  input  penable,
-  input  [ADDR_LENGTH-1:0] paddr,
-  input  [DATA_LENGTH-1:0] pwdata,
-  output                   pready,
-  output [DATA_LENGTH-1:0] prdata);
+  input                        pclk,
+  input                        prst_n,
+  input                        psel,
+  input                        pwrite,
+  input                        penable,
+  input      [ADDR_LENGTH-1:0] paddr,
+  input      [DATA_LENGTH-1:0] pwdata,
+  output reg                   pready,
+  output reg [DATA_LENGTH-1:0] prdata);
 
   parameter IDLE = 2'b00, SETUP = 2'b01, ACCESS = 2'b10;
 
@@ -37,14 +37,24 @@ module apb_slave(
       pready <= 1'b0;
       prdata <= 32'b0;
     end
-    else if(state == ACCESS) begin
-      pready <= 1'b1; 
-      if(pwrite) begin
-        mem[paddr] <= pwdata;
-      end
-      else begin
-        prdata     <= mem[paddr];
-      end
+    else begin
+      case(state)
+        IDLE:   begin
+          pready <= 1'b0;
+        end
+        SETUP:  begin
+          pready <= 1'b0;
+        end
+        ACCESS: begin
+          pready <= 1'b1; 
+          if(pwrite) begin
+            mem[paddr] <= pwdata;
+          end
+          else begin
+            prdata     <= mem[paddr];
+          end
+        end
+      endcase
     end
   end
   
