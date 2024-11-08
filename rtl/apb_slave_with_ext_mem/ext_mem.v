@@ -1,6 +1,7 @@
 //Author: Kaivalyae Panicker <kaivalyaep22@gmail.com>
 //Date  : 09.11.2024
-//Description: This is an example of an external memory module that can be interfaced using the apb slave interface
+//Description: This is an example of an external memory module that
+//can be interfaced using the apb slave interface
 
 /*
  * Copyright 2024 Kaivalyae Panicker
