@@ -52,45 +52,45 @@ class apb_mon extends uvm_monitor;
 		@(vif_mon.mon_cb);
 		data2sb_pkt = apb_seq_item::type_id::create("data2sb_pkt");
 		if(~vif_mon.mon_cb.prst_n) begin
-            //@(vif_mon.mon_cb);
-			      data2sb_pkt.prst_n = vif_mon.mon_cb.prst_n;
-			      data2sb_pkt.paddr  = vif_mon.mon_cb.paddr;
-            data2sb_pkt.psel   = vif_mon.mon_cb.psel;
-            data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
-			      data2sb_pkt.pwdata = vif_mon.mon_cb.pwdata;
-			      data2sb_pkt.prdata = vif_mon.mon_cb.prdata;
-			      @(vif_mon.mon_cb);
-            @(vif_mon.mon_cb);
-			      `uvm_info("INFO",{"Received item from DUT :",data2sb_pkt.convert2string()},UVM_HIGH)
-			      mon_ap.write(data2sb_pkt);
+            		//@(vif_mon.mon_cb);
+			data2sb_pkt.prst_n = vif_mon.mon_cb.prst_n;
+			data2sb_pkt.paddr  = vif_mon.mon_cb.paddr;
+            		data2sb_pkt.psel   = vif_mon.mon_cb.psel;
+            		data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
+			data2sb_pkt.pwdata = vif_mon.mon_cb.pwdata;
+			data2sb_pkt.prdata = vif_mon.mon_cb.prdata;
+			@(vif_mon.mon_cb);
+            		@(vif_mon.mon_cb);
+			`uvm_info("INFO",{"Received item from DUT :",data2sb_pkt.convert2string()},UVM_HIGH)
+			mon_ap.write(data2sb_pkt);
 		end
 		else if(vif_mon.mon_cb.psel) begin
-            if(vif_mon.mon_cb.pwrite) begin
+            		if(vif_mon.mon_cb.pwrite) begin
 			          data2sb_pkt.prst_n = vif_mon.mon_cb.prst_n;
 			          data2sb_pkt.paddr  = vif_mon.mon_cb.paddr;
-                data2sb_pkt.psel   = vif_mon.mon_cb.psel;
-                data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
+                		  data2sb_pkt.psel   = vif_mon.mon_cb.psel;
+                		  data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
 			          data2sb_pkt.pwdata = vif_mon.mon_cb.pwdata;
 			          data2sb_pkt.prdata = vif_mon.mon_cb.prdata;
-                wait(vif_mon.mon_cb.pready);
-                @(vif_mon.mon_cb);
-                @(vif_mon.mon_cb);
+                		  wait(vif_mon.mon_cb.pready);
+                		  @(vif_mon.mon_cb);
+                		  @(vif_mon.mon_cb);
 			          `uvm_info("INFO",{"Received item from DUT :",data2sb_pkt.convert2string()},UVM_HIGH)
 			          mon_ap.write(data2sb_pkt);
-            end
-		    else begin
-                data2sb_pkt.prst_n = vif_mon.mon_cb.prst_n;
+            		end
+		    	else begin
+                		  data2sb_pkt.prst_n = vif_mon.mon_cb.prst_n;
 			          data2sb_pkt.paddr  = vif_mon.mon_cb.paddr;
-                data2sb_pkt.psel   = vif_mon.mon_cb.psel;
-                data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
+                		  data2sb_pkt.psel   = vif_mon.mon_cb.psel;
+                		  data2sb_pkt.pwrite = vif_mon.mon_cb.pwrite;
 			          data2sb_pkt.pwdata = vif_mon.mon_cb.pwdata;			    
-                wait(vif_mon.mon_cb.pready);
+                		  wait(vif_mon.mon_cb.pready);
 			          data2sb_pkt.prdata = vif_mon.mon_cb.prdata;
-                @(vif_mon.mon_cb);                
-                @(vif_mon.mon_cb);
+                		  @(vif_mon.mon_cb);                
+                		  @(vif_mon.mon_cb);
 			          `uvm_info("INFO",{"Received item from DUT :",data2sb_pkt.convert2string()},UVM_HIGH)
 			          mon_ap.write(data2sb_pkt);
-            end
+            		end
 		end
 	endtask : monitor
 
