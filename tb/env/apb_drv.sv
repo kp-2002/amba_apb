@@ -41,21 +41,21 @@ class apb_drv extends uvm_driver #(apb_seq_item);
 	
 	task run_phase(uvm_phase phase);
 		//`uvm_info("INFO", "In run phase of driver", UVM_LOW)
-        vif_drv.drv_cb.psel <= 1'b0;
-        @(vif_drv.drv_cb);
-        vif_drv.drv_cb.prst_n  <= 1'b0;
-        vif_drv.drv_cb.paddr   <= $random;
-        vif_drv.drv_cb.psel    <= $random;
-        vif_drv.drv_cb.penable <= 1'b0;
-        vif_drv.drv_cb.pwrite  <= $random;
-        vif_drv.drv_cb.pwdata  <= $random;
-	    `uvm_info("INFO",{"Reset asserted"},UVM_HIGH)
-        @(vif_drv.drv_cb);
-        @(vif_drv.drv_cb);
-        vif_drv.drv_cb.psel    <= 1'b0;
-        vif_drv.drv_cb.prst_n  <= 1'b1;
-	    `uvm_info("INFO",{"Reset deasserted"},UVM_HIGH)
-        @(vif_drv.drv_cb);  
+        	vif_drv.drv_cb.psel <= 1'b0;
+        	@(vif_drv.drv_cb);
+        	vif_drv.drv_cb.prst_n  <= 1'b0;
+        	vif_drv.drv_cb.paddr   <= $random;
+        	vif_drv.drv_cb.psel    <= $random;
+        	vif_drv.drv_cb.penable <= 1'b0;
+        	vif_drv.drv_cb.pwrite  <= $random;
+        	vif_drv.drv_cb.pwdata  <= $random;
+		`uvm_info("INFO",{"Reset asserted"},UVM_HIGH)
+        	@(vif_drv.drv_cb);
+        	@(vif_drv.drv_cb);
+	        vif_drv.drv_cb.psel    <= 1'b0;
+        	vif_drv.drv_cb.prst_n  <= 1'b1;
+		`uvm_info("INFO",{"Reset deasserted"},UVM_HIGH)
+        	@(vif_drv.drv_cb);  
 		forever begin
 			seq_item_port.get_next_item(req);
 			drive_to_dut(req);	
@@ -71,7 +71,7 @@ class apb_drv extends uvm_driver #(apb_seq_item);
             vif_drv.drv_cb.penable <= 1'b0;
             vif_drv.drv_cb.pwrite  <= data2dut_pkt.pwrite;
             vif_drv.drv_cb.pwdata  <= data2dut_pkt.pwdata;
-	        @(vif_drv.drv_cb);
+	    @(vif_drv.drv_cb);
             vif_drv.drv_cb.penable <= 1'b1;
            `uvm_info("INFO",{"Driven item to DUT :",data2dut_pkt.convert2string()},UVM_HIGH)
             wait(vif_drv.drv_cb.pready);
