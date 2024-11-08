@@ -1,9 +1,9 @@
 //Author: Kaivalyae Panicker <kaivalyaep22@gmail.com>
 //Date  : 09.11.2024
 //Description: This is a UVM based driver with an apb master interface 
-//that can be used to drive sequences for rtl verification purposes.  
-//It can be integrated into UVM test environments to verify any 
-//IP block that has apb slave interfaces.
+//that can be used to drive sequences on an apb slave interface for 
+//rtl verification purposes.  It can be integrated into UVM test environments 
+//to verify any IP block that has apb slave interfaces.
 
 /*
  * Copyright 2024 Kaivalyae Panicker
